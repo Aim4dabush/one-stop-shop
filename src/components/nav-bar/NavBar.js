@@ -9,6 +9,7 @@ import styles from "./NavBar.module.scss";
 
 const NavBar = () => {
   const [showLinks, setShowLinks] = useState(false);
+  console.log(showLinks);
 
   const mouseEnterHandler = () => {
     setShowLinks(true);
@@ -18,13 +19,19 @@ const NavBar = () => {
   };
   return (
     <nav className={styles.nav_container}>
-      <SharedLink>One Stop Shop</SharedLink>
+      <SharedLink buttonStyle={"nav-link"} path={"/"}>
+        One Stop Shop
+      </SharedLink>
       <ul className={styles.links_list}>
         <li>
-          <SharedLink>Cart</SharedLink>
+          <SharedLink buttonStyle={"nav-link"} path={"/cart"}>
+            Cart
+          </SharedLink>
         </li>
         <li>
-          <SharedLink>Checkout</SharedLink>
+          <SharedLink buttonStyle={"nav-link"} path={"/checkout"}>
+            Checkout
+          </SharedLink>
         </li>
         <li
           className={styles.profile}
@@ -47,10 +54,10 @@ const NavBar = () => {
           </ul>
         </li>
         <li>
-          <SharedLink>Login</SharedLink>
+          <SharedLink path={"/login"}>Login</SharedLink>
         </li>
         <li>
-          <SharedButton>Sign Out</SharedButton>
+          <SharedButton buttonStyle={"nav-link"}>Sign Out</SharedButton>
         </li>
       </ul>
     </nav>

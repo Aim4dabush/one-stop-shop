@@ -1,9 +1,10 @@
 @import "../../../SassVariables.scss";
 
-button {
+.nav_link {
   background-color: $secondary;
   border: none;
   color: $link;
+  font-size: 16px;
   padding: 0.5rem 0.5rem;
   width: 100px;
 
