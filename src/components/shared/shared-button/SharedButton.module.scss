@@ -1,0 +1,15 @@
+@import "../../../SassVariables.scss";
+
+button {
+  background-color: $secondary;
+  border: none;
+  color: $link;
+  padding: 0.5rem 0.5rem;
+  width: 100px;
+
+  &:hover {
+    color: $primary;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
