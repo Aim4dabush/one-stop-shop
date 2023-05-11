@@ -1,0 +1,52 @@
+@import "../../SassVariables.scss";
+
+.nav_container {
+  background-color: $secondary;
+  color: $primary;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding: 1rem;
+  z-index: 1;
+
+  .links_list {
+    display: flex;
+    gap: 1rem;
+    width: 33%;
+
+    li {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .profile {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      width: 100%;
+
+      .profile_list {
+        background-color: $secondary;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        position: absolute;
+        padding: 0.5rem 1rem;
+        transform: translateY(60%);
+        transform-origin: top;
+      }
+
+      .profile_title {
+        color: $link;
+
+        &:hover {
+          color: $primary;
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
