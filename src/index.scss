@@ -14,7 +14,14 @@ body {
 }
 
 a {
+  color: $link;
   text-decoration: none;
+
+  &:hover {
+    color: $primary;
+    cursor: pointer;
+    text-decoration: underline;
+  }
 }
 
 button {
