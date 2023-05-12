@@ -94,11 +94,11 @@ const NavBar = () => {
       </ul>
       <div className={styles.icon_wrapper}>
         {openMenu ? (
-          <SharedButton buttonStyle={"primary"} clickHandler={openHandler}>
+          <SharedButton buttonStyle={"nav-button"} clickHandler={openHandler}>
             <FaRegWindowClose />
           </SharedButton>
         ) : (
-          <SharedButton buttonStyle={"primary"} clickHandler={openHandler}>
+          <SharedButton buttonStyle={"nav-button"} clickHandler={openHandler}>
             <FaBars />
           </SharedButton>
         )}
