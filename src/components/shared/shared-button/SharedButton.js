@@ -6,7 +6,7 @@ const SharedButton = ({ buttonStyle, children }) => {
     <button
       className={`${buttonStyle === "nav-link" && styles.nav_link} ${
         buttonStyle === "non-nav-link" && styles.non_nav_link
-      }`}
+      } ${buttonStyle === "primary" && styles.primary}`}
     >
       {children}
     </button>
