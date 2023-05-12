@@ -1,5 +1,7 @@
-.link {
-  align-items: center;
-  display: flex;
-  gap: 0.2rem;
+@import "../../../SassVariables.scss";
+
+.alternate_color {
+  &:hover {
+    color: $secondary;
+  }
 }
