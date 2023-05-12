@@ -14,7 +14,10 @@ body {
 }
 
 a {
+  align-items: center;
   color: $link;
+  display: flex;
+  gap: 0.2rem;
   text-decoration: none;
 
   &:hover {
@@ -45,6 +48,17 @@ h5,
 h6 {
   font-weight: $bold;
   margin: 0;
+}
+
+input {
+  border: 1px solid $secondary;
+  border-radius: 5px;
+  padding-left: 0.25rem;
+  font-size: 20px;
+}
+
+label {
+  font-size: 20px;
 }
 
 p {
