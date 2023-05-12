@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { Outlet } from "react-router-dom";
 
 //components
 import NavBar from "./components/nav-bar/NavBar";
@@ -12,7 +13,9 @@ function App() {
       <header>
         <NavBar />
       </header>
-      <main></main>
+      <main>
+        <Outlet />
+      </main>
       <footer></footer>
     </Fragment>
   );
