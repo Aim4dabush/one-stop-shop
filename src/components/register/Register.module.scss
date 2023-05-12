@@ -10,7 +10,7 @@
     border-radius: 8px;
     box-shadow: 6px 6px 10px $secondary;
     padding: 1rem;
-    width: 40%;
+    width: 50%;
 
     .btn_wrapper {
       display: flex;
@@ -29,6 +29,31 @@
     .input_container {
       display: flex;
       gap: 0.5rem;
+    }
+  }
+}
+
+@media (max-width: 912px) {
+  .register_container {
+    .register_form {
+      width: 70%;
+    }
+  }
+}
+
+@media (max-width: 540px) {
+  .register_container {
+    .register_form {
+      width: 90%;
+
+      .general_container {
+        margin: 0;
+      }
+
+      .input_container {
+        flex-direction: column;
+        gap: 0;
+      }
     }
   }
 }
