@@ -25,7 +25,8 @@ a {
 }
 
 button {
-  border-radius: 8px;
+  border: 1px solid $secondary;
+  border-radius: 5px;
   font-family: $oswald;
 
   &:hover {
