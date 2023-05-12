@@ -1,7 +1,12 @@
-import React from "react";
+//components
+import Register from "../components/register/Register";
 
 const RegisterPage = () => {
-  return <div>RegisterPage</div>;
+  return (
+    <section>
+      <Register />
+    </section>
+  );
 };
 
 export default RegisterPage;
