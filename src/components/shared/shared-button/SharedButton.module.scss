@@ -1,34 +1,34 @@
 @import "../../../SassVariables.scss";
 
 .nav_link {
-  background-color: $secondary;
-  border: none;
   color: $link;
   font-size: 16px;
+  padding: 0;
   width: 100px;
 
   &:hover {
     color: $primary;
-    cursor: pointer;
     text-decoration: underline;
   }
 }
 
 .non_nav_link {
   align-items: center;
-  background-color: $secondary;
-  border: none;
   color: $link;
   display: flex;
   font-size: 16px;
   gap: 0.2rem;
   justify-content: center;
+  padding: 0;
   width: 100px;
 }
 
-.primary {
-  background-color: $secondary;
-  border: none;
+.nav_button {
   color: $primary;
-  font-size: 20px;
+  padding: 0;
+}
+
+.success {
+  background-color: $success;
+  color: $secondary;
 }
