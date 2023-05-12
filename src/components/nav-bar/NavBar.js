@@ -4,44 +4,76 @@ import { useState } from "react";
 import SharedButton from "../shared/shared-button/SharedButton";
 import SharedLink from "../shared/shared-link/SharedLink";
 
+//react icons
+import {
+  FaBars,
+  FaRegWindowClose,
+  FaShoppingCart,
+  FaShoppingBag,
+  FaUserCircle,
+} from "react-icons/fa";
+
 //styles
 import styles from "./NavBar.module.scss";
 
 const NavBar = () => {
-  const [showLinks, setShowLinks] = useState(false);
-  console.log(showLinks);
+  const [openMenu, setOpenMenu] = useState(false);
+  const [showOnHover, setShowOnHover] = useState(false);
+  const [showOnClick, setShowOnClick] = useState(false);
 
   const mouseEnterHandler = () => {
-    setShowLinks(true);
+    setShowOnHover(true);
   };
   const mouseLeaveHandler = () => {
-    setShowLinks(false);
+    setShowOnHover(false);
+  };
+  const openHandler = () => {
+    setOpenMenu(!openMenu);
+    setShowOnClick(false);
+  };
+  const showOnClickHandler = () => {
+    setShowOnClick(!showOnClick);
   };
   return (
     <nav className={styles.nav_container}>
-      <SharedLink buttonStyle={"nav-link"} path={"/"}>
-        One Stop Shop
-      </SharedLink>
-      <ul className={styles.links_list}>
+      <div className={styles.brand_wrapper}>
+        <SharedLink buttonStyle={"nav-link"} path={"/"}>
+          One Stop Shop
+        </SharedLink>
+      </div>
+      <ul
+        className={`${styles.links_wrapper} ${
+          openMenu ? styles.show_nav : styles.hide_nav
+        }`}
+      >
         <li>
           <SharedLink buttonStyle={"nav-link"} path={"/cart"}>
-            Cart
+            <FaShoppingCart /> Cart
           </SharedLink>
         </li>
         <li>
           <SharedLink buttonStyle={"nav-link"} path={"/checkout"}>
-            Checkout
+            <FaShoppingBag /> Checkout
           </SharedLink>
         </li>
         <li
-          className={styles.profile}
+          className={`${styles.profile} ${
+            showOnHover ? styles.visible : styles.hidden
+          }`}
           onMouseLeave={mouseLeaveHandler}
-          style={{ overflow: showLinks ? "visible" : "hidden" }}
         >
-          <p className={styles.profile_title} onMouseEnter={mouseEnterHandler}>
-            Profile
-          </p>
-          <ul className={styles.profile_list}>
+          <SharedButton
+            buttonStyle={"non-nav-link"}
+            clickHandler={showOnClickHandler}
+          >
+            <FaUserCircle /> Profile
+          </SharedButton>
+          <ul
+            className={`${styles.profile_list} ${
+              showOnClick ? styles.show_profile : styles.hide_profile
+            }`}
+            onMouseEnter={mouseEnterHandler}
+          >
             <li>
               <SharedLink path={"/profile"}>Dashboard</SharedLink>
             </li>
@@ -60,6 +92,17 @@ const NavBar = () => {
           <SharedButton buttonStyle={"nav-link"}>Sign Out</SharedButton>
         </li>
       </ul>
+      <div className={styles.icon_wrapper}>
+        {openMenu ? (
+          <SharedButton buttonStyle={"primary"} clickHandler={openHandler}>
+            <FaRegWindowClose />
+          </SharedButton>
+        ) : (
+          <SharedButton buttonStyle={"primary"} clickHandler={openHandler}>
+            <FaBars />
+          </SharedButton>
+        )}
+      </div>
     </nav>
   );
 };

@@ -9,10 +9,24 @@
   padding: 1rem;
   z-index: 1;
 
-  .links_list {
+  .brand_wrapper {
+    align-items: center;
+    display: flex;
+    width: 100%;
+  }
+
+  .icon_wrapper {
+    display: none;
+  }
+
+  .links_wrapper {
     display: flex;
     gap: 1rem;
-    width: 33%;
+    width: 100%;
+
+    .hidden {
+      overflow: hidden;
+    }
 
     li {
       align-items: center;
@@ -36,10 +50,19 @@
         padding: 0.5rem 1rem;
         transform: translateY(60%);
         transform-origin: top;
+
+        li {
+          margin-top: 0.5rem;
+        }
       }
 
       .profile_title {
+        align-items: center;
         color: $link;
+        display: flex;
+        justify-content: center;
+        gap: 0.2rem;
+        width: 100%;
 
         &:hover {
           color: $primary;
@@ -47,6 +70,72 @@
           text-decoration: underline;
         }
       }
+    }
+
+    .visible {
+      overflow: visible;
+    }
+  }
+}
+
+@media (max-width: 540px) {
+  .nav_container {
+    position: relative;
+
+    .icon_wrapper {
+      display: initial;
+    }
+    .links_wrapper {
+      background-color: $secondary;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      padding: 0.5rem;
+      position: absolute;
+      right: 0;
+      width: fit-content;
+      z-index: 2;
+
+      .hidden {
+        overflow: visible;
+      }
+
+      .profile {
+        background-color: $secondary;
+        position: relative;
+
+        .hide_profile {
+          display: none;
+          transform: translateX(0) translateY(41%);
+          transform-origin: left;
+          transition: 500ms ease-out;
+        }
+
+        .profile_list {
+          border-top-left-radius: 5px;
+          width: 112px;
+        }
+
+        .show_profile {
+          display: initial;
+          transform: translateX(-100%) translateY(41%);
+          transform-origin: left;
+          transition: 500ms ease-in;
+        }
+      }
+    }
+
+    .hide_nav {
+      transform: translateX(100%) translateY(20%);
+      transform-origin: right;
+      transition: transform 500ms ease-out;
+    }
+
+    .show_nav {
+      transform: translateX(0) translateY(20%);
+      transform-origin: right;
+      transition: transform 500ms ease-in;
     }
   }
 }
