@@ -27,6 +27,10 @@ a {
 button {
   border-radius: 8px;
   font-family: $oswald;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 h1,
