@@ -1,0 +1,38 @@
+@import "../../SassVariables.scss";
+
+.login_container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 58px);
+  justify-content: center;
+
+  .login_form {
+    border-radius: 8px;
+    box-shadow: 6px 6px 10px $secondary;
+    padding: 1rem;
+    width: 40%;
+
+    .btn_wrapper {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .form_title {
+      text-align: center;
+    }
+
+    .input_container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .text_wrapper {
+      display: flex;
+      gap: 0.2rem;
+      width: 100%;
+    }
+  }
+}
