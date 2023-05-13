@@ -18,6 +18,9 @@ import {
 //luxon
 import { DateTime } from "luxon";
 
+//services
+import { postProfile } from "./profile-service";
+
 const auth = getAuth(app);
 
 export const signup = (data) => {
@@ -38,6 +41,15 @@ export const signup = (data) => {
         displayName: data.name,
         phoneNumber: data.phone,
       });
+
+      const postData = {
+        birthday: data.birthday,
+        email: data.email,
+        name: data.name,
+        phone: data.phone,
+        id: user.uid,
+      };
+      dispatch(postProfile(postData));
     } catch (err) {
       console.log(err.message);
     }
