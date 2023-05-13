@@ -13,27 +13,42 @@ import {
   FaUserCircle,
 } from "react-icons/fa";
 
+//redux
+import { useDispatch } from "react-redux";
+
+//services
+import { logout } from "../../firebase/services/auth-service";
+
 //styles
 import styles from "./NavBar.module.scss";
 
 const NavBar = () => {
+  const dispatch = useDispatch();
   const [openMenu, setOpenMenu] = useState(false);
   const [showOnHover, setShowOnHover] = useState(false);
   const [showOnClick, setShowOnClick] = useState(false);
 
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
+
   const mouseEnterHandler = () => {
     setShowOnHover(true);
   };
+
   const mouseLeaveHandler = () => {
     setShowOnHover(false);
   };
+
   const openHandler = () => {
     setOpenMenu(!openMenu);
     setShowOnClick(false);
   };
+
   const showOnClickHandler = () => {
     setShowOnClick(!showOnClick);
   };
+
   return (
     <nav className={styles.nav_container}>
       <div className={styles.brand_wrapper}>
@@ -89,7 +104,9 @@ const NavBar = () => {
           <SharedLink path={"/login"}>Login</SharedLink>
         </li>
         <li>
-          <SharedButton buttonStyle={"nav-link"}>Sign Out</SharedButton>
+          <SharedButton buttonStyle={"nav-link"} clickHandler={logoutHandler}>
+            Sign Out
+          </SharedButton>
         </li>
       </ul>
       <div className={styles.icon_wrapper}>

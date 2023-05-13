@@ -14,7 +14,7 @@
 
     .btn_wrapper {
       display: flex;
-      justify-content: end;
+      justify-content: flex-end;
       margin-top: 1rem;
     }
 
@@ -29,6 +29,25 @@
     .input_container {
       display: flex;
       gap: 0.5rem;
+
+      .input_wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .error {
+          border: 1px solid $error;
+        }
+
+        .error_label {
+          color: $error;
+        }
+
+        .error_message {
+          color: $error;
+          font-size: 14px;
+        }
+      }
     }
   }
 }
