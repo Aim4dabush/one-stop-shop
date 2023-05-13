@@ -11,20 +11,22 @@ const SharedInput = ({
   type,
   value,
 }) => {
-  const inputErrorClass = error ? styles.error : null;
+  const input_error = error && styles.error;
 
   return (
     <div className={styles.input_wrapper}>
-      <label htmlFor={id}>{children}</label>
+      <label htmlFor={id} className={`${error && styles.error_label}`}>
+        {children}
+      </label>
       <input
-        className={`${inputErrorClass}`}
+        className={`${input_error}`}
         id={id}
         value={value}
         type={type}
         onBlur={onBlurHandler}
         onChange={onChangeHandler}
       />
-      {error && <p>{message}</p>}
+      {error && <p className={styles.error_message}>{message}</p>}
     </div>
   );
 };
