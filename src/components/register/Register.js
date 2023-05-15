@@ -67,12 +67,12 @@ const Register = () => {
 
     dispatch(signup(registerData));
 
-    // birthday.resetHandler();
-    // confirm.resetHandler();
-    // email.resetHandler();
-    // name.resetHandler();
-    // password.resetHandler();
-    // phone.resetHandler();
+    birthday.resetHandler();
+    confirm.resetHandler();
+    email.resetHandler();
+    name.resetHandler();
+    password.resetHandler();
+    phone.resetHandler();
   };
 
   return (

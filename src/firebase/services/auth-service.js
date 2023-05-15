@@ -1,6 +1,7 @@
 import {
   setLoggedUser,
   setLoggedUserReset,
+  setRegistered,
 } from "../../redux/slices/authSlice";
 
 //firebase
@@ -37,6 +38,7 @@ export const signup = (data) => {
       }
 
       const user = result.user;
+      dispatch(setRegistered(user.uid));
       updateProfile(user, {
         displayName: data.name,
         phoneNumber: data.phone,

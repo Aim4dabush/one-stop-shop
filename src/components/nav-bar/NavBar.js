@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 //components
 import SharedButton from "../shared/shared-button/SharedButton";
@@ -24,12 +25,14 @@ import styles from "./NavBar.module.scss";
 
 const NavBar = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [openMenu, setOpenMenu] = useState(false);
   const [showOnHover, setShowOnHover] = useState(false);
   const [showOnClick, setShowOnClick] = useState(false);
 
   const logoutHandler = () => {
     dispatch(logout());
+    navigate("/", { replace: true });
   };
 
   const mouseEnterHandler = () => {
