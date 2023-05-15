@@ -1,0 +1,18 @@
+.container {
+  padding: 2rem;
+
+  .productsWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 414px) {
+  .container {
+    .productsWrapper {
+      justify-content: center;
+    }
+  }
+}
