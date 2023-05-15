@@ -1,0 +1,50 @@
+@import "../../../SassVariables.scss";
+
+.btnInputGroup {
+  align-items: start;
+  display: grid;
+  grid-template-columns: 30px 35px 30px;
+
+  .btn {
+    background-color: $secondary;
+    border: none;
+    color: $primary;
+    height: 20px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .input {
+    border: 1px solid $secondary;
+    height: 20px;
+    text-align: center;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  .left {
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+  }
+
+  .right {
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+}
+
+@media (max-width: 414px) {
+  .btnInputGroup {
+    width: 50%;
+  }
+}
