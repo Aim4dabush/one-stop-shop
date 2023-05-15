@@ -3,6 +3,10 @@ import {
   setLoggedUserReset,
   setRegistered,
 } from "../../redux/slices/authSlice";
+import {
+  setProductReset,
+  setProductsReset,
+} from "../../redux/slices/productsSlice";
 
 //firebase
 import { app } from "../firebaseConfig";
@@ -89,6 +93,7 @@ export const login = (loginInfo) => {
 
       localStorage.setItem("user", JSON.stringify(loginCredentials));
       dispatch(setLoggedUser(loginCredentials));
+      alert("Logged In Successfully");
     } catch (err) {
       console.log(err.message);
     }
@@ -98,8 +103,10 @@ export const login = (loginInfo) => {
 export const logout = () => {
   return (dispatch) => {
     signOut(auth);
+    dispatch(setProductReset());
+    dispatch(setProductsReset());
     dispatch(setLoggedUserReset());
     localStorage.clear();
-    console.log("logged out");
+    alert("Logged Off Successfully");
   };
 };
