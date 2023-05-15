@@ -1,13 +1,21 @@
 @import "../../../SassVariables.scss";
 
 .btn {
+  font-size: 16px;
+  overflow: hidden;
+  position: relative;
+
+  &:hover {
+    overflow: visible;
+  }
+
   .toolTip {
     color: $secondary;
     left: 0;
     position: absolute;
-    overflow: hidden;
+    text-align: start;
     top: -100%;
-    width: 113%;
+    width: 175%;
   }
 }
 .nav_link {
