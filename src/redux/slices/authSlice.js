@@ -6,6 +6,7 @@ const authSlice = createSlice({
   name: "auth",
   initialState: {
     loggedUser: localData ? localData : {},
+    registered: "",
   },
   reducers: {
     setLoggedUser(state, action) {
@@ -15,9 +16,21 @@ const authSlice = createSlice({
     setLoggedUserReset(state) {
       state.loggedUser = {};
     },
+    setRegistered(state, action) {
+      state.registered = "";
+      state.registered = action.payload;
+    },
+    setRegisteredReset(state) {
+      state.registered = "";
+    },
   },
 });
 
-export const { setLoggedUser, setLoggedUserReset } = authSlice.actions;
+export const {
+  setLoggedUser,
+  setLoggedUserReset,
+  setRegistered,
+  setRegisteredReset,
+} = authSlice.actions;
 
 export default authSlice.reducer;
