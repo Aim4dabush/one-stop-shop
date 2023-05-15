@@ -28,6 +28,11 @@
   padding: 0;
 }
 
+.secondary {
+  background-color: $secondary;
+  color: $primary;
+}
+
 .success {
   background-color: $success;
   color: $secondary;

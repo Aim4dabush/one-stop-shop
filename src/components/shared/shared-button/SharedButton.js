@@ -8,7 +8,8 @@ const SharedButton = ({ buttonStyle, children, clickHandler }) => {
         (buttonStyle === "nav-link" && styles.nav_link) ||
         (buttonStyle === "non-nav-link" && styles.non_nav_link) ||
         (buttonStyle === "nav-button" && styles.nav_button) ||
-        (buttonStyle === "success" && styles.success)
+        (buttonStyle === "success" && styles.success) ||
+        (buttonStyle === "secondary" && styles.secondary)
       }`}
       onClick={clickHandler}
     >
