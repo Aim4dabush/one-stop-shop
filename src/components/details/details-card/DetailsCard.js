@@ -8,12 +8,18 @@ import SharedQuantityGroup from "../../shared/shared-quantity-group/SharedQuanti
 import { FaCartPlus, FaHeart } from "react-icons/fa";
 
 //redux
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+//services
+import { postShoppingCart } from "../../../firebase/services/shopping-cart-service";
+import { postWishList } from "../../../firebase/services/wish-cart-service";
 
 //styles
 import styles from "./DetailsCard.module.scss";
+import { DateTime } from "luxon";
 
 const DetailsCard = () => {
+  const dispatch = useDispatch();
   const {
     brand,
     category,
@@ -27,6 +33,42 @@ const DetailsCard = () => {
     title,
   } = useSelector((state) => state.products.product);
   const [quantity, setQuantity] = useState(1);
+
+  const shoppingCartHandler = () => {
+    const post = {
+      brand,
+      category,
+      description,
+      id,
+      mainPic,
+      price,
+      quantity: parseInt(quantity),
+      rating,
+      stock,
+      subtotal: parseInt(quantity) * price,
+      title,
+    };
+
+    dispatch(postShoppingCart(post));
+  };
+
+  const wishListHandler = () => {
+    const post = {
+      brand,
+      category,
+      date: DateTime.now().toFormat("MM-dd-yyyy"),
+      description,
+      id,
+      mainPic,
+      price,
+      quantity: parseInt(quantity),
+      rating,
+      stock,
+      title,
+    };
+
+    dispatch(postWishList(post));
+  };
 
   return (
     <div className={styles.card}>
@@ -50,10 +92,18 @@ const DetailsCard = () => {
             <SharedQuantityGroup setValue={setQuantity} value={1} />
           </div>
           <div className={`${styles.row} ${styles.actions}`}>
-            <SharedButton buttonStyle={"success"} tip={"Add to Cart"}>
+            <SharedButton
+              buttonStyle={"success"}
+              clickHandler={shoppingCartHandler}
+              tip={"Add to Cart"}
+            >
               <FaCartPlus />
             </SharedButton>
-            <SharedButton buttonStyle={"warning"} tip={"Add to Wish"}>
+            <SharedButton
+              buttonStyle={"warning"}
+              clickHandler={wishListHandler}
+              tip={"Add to Wish"}
+            >
               <FaHeart />
             </SharedButton>
           </div>
