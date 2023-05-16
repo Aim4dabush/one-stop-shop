@@ -51,6 +51,17 @@
         transform: translateY(60%);
         transform-origin: top;
 
+        .badge {
+          align-items: center;
+          background-color: $primary;
+          border-radius: 50%;
+          color: $secondary;
+          display: flex;
+          height: 20px;
+          justify-content: center;
+          width: 20px;
+        }
+
         li {
           margin-top: 0.5rem;
         }

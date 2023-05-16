@@ -15,7 +15,7 @@ import {
 } from "react-icons/fa";
 
 //redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 //services
 import { logout } from "../../firebase/services/auth-service";
@@ -26,6 +26,7 @@ import styles from "./NavBar.module.scss";
 const NavBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { wishListCart } = useSelector((state) => state.wish);
   const [openMenu, setOpenMenu] = useState(false);
   const [showOnHover, setShowOnHover] = useState(false);
   const [showOnClick, setShowOnClick] = useState(false);
@@ -99,7 +100,10 @@ const NavBar = () => {
               <SharedLink path={"/profile/orders"}>Order History</SharedLink>
             </li>
             <li>
-              <SharedLink path={"/profile/wish-list"}>Wish List</SharedLink>
+              <SharedLink path={"/profile/wish-list"}>
+                Wish List{" "}
+                <span className={styles.badge}>{wishListCart?.length}</span>
+              </SharedLink>
             </li>
           </ul>
         </li>
