@@ -11,17 +11,18 @@ const realtimeDB = getDatabase(app);
 export const getProfile = (userId) => {
   return (dispatch) => {
     const profileRef = ref(realtimeDB, `users/${userId}/profile`);
-
+    let info = {};
     onValue(profileRef, (result) => {
       try {
         if (!result.val()) {
-          throw new Error("Error getting profile");
+          dispatch(setInfo(info));
+          return;
         }
 
-        const profile = result.val();
-        dispatch(setInfo(profile));
+        info = result.val();
+        dispatch(setInfo(info));
       } catch (err) {
-        console.log(err.message);
+        alert(err.message);
       }
     });
   };
@@ -47,7 +48,7 @@ export const postProfile = (data) => {
       await update(profileRef, { general });
       await update(profileRef, { address });
     } catch (err) {
-      console.log(err.message);
+      alert(err.message);
     }
 
     dispatch(getProfile(data.id));
