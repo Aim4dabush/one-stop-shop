@@ -62,3 +62,43 @@
     }
   }
 }
+
+@media (max-width: 1280px) {
+  .card {
+    width: 80%;
+  }
+}
+
+@media (max-width: 820px) {
+  .card {
+    .contentWrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 200px;
+
+      .imgWrapper {
+        img {
+          width: 100%;
+        }
+      }
+
+      .infoWrapper {
+        width: 100%;
+
+        .otherInfo {
+          p {
+            width: 50%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .card {
+    .titleWrapper {
+      flex-direction: column;
+    }
+  }
+}
