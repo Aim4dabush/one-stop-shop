@@ -26,6 +26,7 @@ import styles from "./NavBar.module.scss";
 const NavBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { shoppingCart } = useSelector((state) => state.shop);
   const { wishListCart } = useSelector((state) => state.wish);
   const [openMenu, setOpenMenu] = useState(false);
   const [showOnHover, setShowOnHover] = useState(false);
@@ -67,7 +68,8 @@ const NavBar = () => {
       >
         <li>
           <SharedLink buttonStyle={"nav-link"} path={"/cart"}>
-            <FaShoppingCart /> Cart
+            <FaShoppingCart /> Cart{" "}
+            <span className={styles.badge}>{shoppingCart?.length}</span>
           </SharedLink>
         </li>
         <li>

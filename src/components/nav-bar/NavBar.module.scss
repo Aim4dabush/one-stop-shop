@@ -33,6 +33,17 @@
       display: flex;
       justify-content: center;
       width: 100%;
+
+      .badge {
+        align-items: center;
+        background-color: $primary;
+        border-radius: 50%;
+        color: $secondary;
+        display: flex;
+        height: 20px;
+        justify-content: center;
+        width: 20px;
+      }
     }
 
     .profile {
