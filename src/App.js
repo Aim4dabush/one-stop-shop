@@ -20,11 +20,9 @@ function App() {
   const { loggedUser } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (loggedUser.id) {
-      dispatch(getProfile(loggedUser.id));
-      dispatch(getShoppingCart());
-      dispatch(getWishList());
-    }
+    dispatch(getProfile(loggedUser.id));
+    dispatch(getShoppingCart());
+    dispatch(getWishList());
   }, [dispatch, loggedUser]);
   return (
     <Fragment>
