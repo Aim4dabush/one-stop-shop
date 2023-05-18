@@ -7,6 +7,8 @@ import {
   setProductReset,
   setProductsReset,
 } from "../../redux/slices/productsSlice";
+import { setShoppingCartReset } from "../../redux/slices/shoppingCartSlice";
+import { setWishListCartReset } from "../../redux/slices/wishListSlice";
 
 //firebase
 import { app } from "../firebaseConfig";
@@ -103,9 +105,11 @@ export const login = (loginInfo) => {
 export const logout = () => {
   return (dispatch) => {
     signOut(auth);
+    dispatch(setLoggedUserReset());
     dispatch(setProductReset());
     dispatch(setProductsReset());
-    dispatch(setLoggedUserReset());
+    dispatch(setShoppingCartReset());
+    dispatch(setWishListCartReset());
     localStorage.clear();
     alert("Logged Off Successfully");
   };
