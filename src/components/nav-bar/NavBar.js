@@ -26,6 +26,7 @@ import styles from "./NavBar.module.scss";
 const NavBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { loggedUser } = useSelector((state) => state.auth);
   const { shoppingCart } = useSelector((state) => state.shop);
   const { wishListCart } = useSelector((state) => state.wish);
   const [openMenu, setOpenMenu] = useState(false);
@@ -110,12 +111,13 @@ const NavBar = () => {
           </ul>
         </li>
         <li>
-          <SharedLink path={"/login"}>Login</SharedLink>
-        </li>
-        <li>
-          <SharedButton buttonStyle={"nav-link"} clickHandler={logoutHandler}>
-            Sign Out
-          </SharedButton>
+          {loggedUser.token ? (
+            <SharedButton buttonStyle={"nav-link"} clickHandler={logoutHandler}>
+              Sign Out
+            </SharedButton>
+          ) : (
+            <SharedLink path={"/login"}>Login</SharedLink>
+          )}
         </li>
       </ul>
       <div className={styles.icon_wrapper}>
