@@ -1,12 +1,10 @@
 import { setInfo } from "../../redux/slices/profileSlice";
 
 //firebase
-import { app } from "../firebaseConfig";
+import { realtimeDB } from "../firebaseConfig";
 
 //realtime database
-import { getDatabase, onValue, ref, update } from "firebase/database";
-
-const realtimeDB = getDatabase(app);
+import { onValue, ref, update } from "firebase/database";
 
 export const getProfile = (userId) => {
   return (dispatch) => {

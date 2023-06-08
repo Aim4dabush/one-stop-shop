@@ -11,12 +11,11 @@ import { setShoppingCartReset } from "../../redux/slices/shoppingCartSlice";
 import { setWishListCartReset } from "../../redux/slices/wishListSlice";
 
 //firebase
-import { app } from "../firebaseConfig";
+import { auth } from "../firebaseConfig";
 
 //authentication
 import {
   createUserWithEmailAndPassword,
-  getAuth,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
@@ -27,8 +26,6 @@ import { DateTime } from "luxon";
 
 //services
 import { postProfile } from "./profile-service";
-
-const auth = getAuth(app);
 
 export const signup = (data) => {
   return async (dispatch) => {
@@ -87,7 +84,7 @@ export const login = (loginInfo) => {
         .plus({ hours: 2 })
         .toFormat("X");
       const currentTime = DateTime.now().toFormat("X");
-      let loginCredentials = {
+      const loginCredentials = {
         id: user.claims.user_id,
         expires: expTime - currentTime,
         token: user.token,

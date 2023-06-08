@@ -1,13 +1,12 @@
 import { setWishListCart } from "../../redux/slices/wishListSlice";
 
 //firebase
-import { app } from "../firebaseConfig";
+import { realtimeDB } from "../firebaseConfig";
 
 //realtime database
-import { get, getDatabase, onValue, ref, update } from "firebase/database";
+import { get, onValue, ref, update } from "firebase/database";
 
 const user = JSON.parse(localStorage.getItem("user"));
-const realtimeDB = getDatabase(app);
 const wishRef = ref(realtimeDB, `users/${user?.id}/carts`);
 
 export const deleteItem = (id) => {

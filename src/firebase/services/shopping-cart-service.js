@@ -1,13 +1,15 @@
 import { setShoppingCart } from "../../redux/slices/shoppingCartSlice";
 
 //firebase
-import { app } from "../firebaseConfig";
+import { realtimeDB } from "../firebaseConfig";
 
 //realtime database
-import { get, getDatabase, onValue, ref, update } from "firebase/database";
+import { get, onValue, ref, update } from "firebase/database";
 
-const user = JSON.parse(localStorage.getItem("user"));
-const realtimeDB = getDatabase(app);
+//utils
+import { getCredentials } from "../../utils/get-credentials";
+
+const user = getCredentials();
 const shopRef = ref(realtimeDB, `users/${user?.id}/carts`);
 
 export const deleteItem = (id) => {
