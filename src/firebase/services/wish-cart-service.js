@@ -30,25 +30,40 @@ export const deleteItem = (id) => {
       }, []);
 
       update(wishRef, { wish_list: newCart });
-      dispatch(getWishList());
+      dispatch(getWishList(""));
     } catch (err) {
       alert(err.message);
     }
   };
 };
 
-export const getWishList = () => {
-  return (dispatch) => {
+export const getWishList = (id) => {
+  return async (dispatch) => {
     let list = [];
-    onValue(wishRef, (result) => {
-      if (!result.exists()) {
-        dispatch(setWishListCart(list));
-        return;
-      }
+    if (id) {
+      try {
+        const result = await get(ref(realtimeDB, `users/${id}/carts`));
 
-      list = result.val().wish_list;
-      dispatch(setWishListCart(list));
-    });
+        if (!result.exists()) {
+          return;
+        }
+
+        list = result.val().wish_list;
+        dispatch(setWishListCart(list));
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      onValue(wishRef, (result) => {
+        if (!result.exists()) {
+          dispatch(setWishListCart(list));
+          return;
+        }
+
+        list = result.val().wish_list;
+        dispatch(setWishListCart(list));
+      });
+    }
   };
 };
 
@@ -79,7 +94,7 @@ export const postWishList = (data) => {
       }
 
       update(wishRef, { wish_list: newCart });
-      dispatch(getWishList());
+      dispatch(getWishList(""));
     } catch (err) {
       alert(err.message);
     }

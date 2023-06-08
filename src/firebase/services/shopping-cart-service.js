@@ -30,25 +30,40 @@ export const deleteItem = (id) => {
       }, []);
 
       update(shopRef, { shopping_cart: newCart });
-      dispatch(getShoppingCart());
+      dispatch(getShoppingCart(""));
     } catch (err) {
       alert(err.message);
     }
   };
 };
 
-export const getShoppingCart = () => {
-  return (dispatch) => {
+export const getShoppingCart = (id) => {
+  return async (dispatch) => {
     let list = [];
-    onValue(shopRef, (result) => {
-      if (!result.exists()) {
-        dispatch(setShoppingCart(list));
-        return;
-      }
+    if (id) {
+      try {
+        const result = await get(ref(realtimeDB, `users/${id}/carts`));
 
-      list = result.val().shopping_cart;
-      dispatch(setShoppingCart(list));
-    });
+        if (!result.exists()) {
+          return;
+        }
+
+        list = result.val().shopping_cart;
+        dispatch(setShoppingCart(list));
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      onValue(shopRef, (result) => {
+        if (!result.exists()) {
+          dispatch(setShoppingCart(list));
+          return;
+        }
+
+        list = result.val().shopping_cart;
+        dispatch(setShoppingCart(list));
+      });
+    }
   };
 };
 
@@ -79,7 +94,7 @@ export const postShoppingCart = (data) => {
       }
 
       update(shopRef, { shopping_cart: newCart });
-      dispatch(getShoppingCart());
+      dispatch(getShoppingCart(""));
     } catch (err) {
       alert(err.message);
     }
