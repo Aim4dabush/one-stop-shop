@@ -6,15 +6,10 @@ import { realtimeDB } from "../firebaseConfig";
 //realtime database
 import { get, onValue, ref, update } from "firebase/database";
 
-//utils
-import { getCredentials } from "../../utils/get-credentials";
-
-const user = getCredentials();
-const shopRef = ref(realtimeDB, `users/${user?.id}/carts`);
-
-export const deleteItem = (id) => {
+export const deleteItem = (productId, userId) => {
   return async (dispatch) => {
     let list = [];
+    const shopRef = ref(realtimeDB, `users/${userId}/carts`);
     try {
       const result = await get(shopRef);
 
@@ -24,7 +19,7 @@ export const deleteItem = (id) => {
 
       list = result.val().shopping_cart;
       const newCart = list.reduce((arr, item) => {
-        if (item.id === id) {
+        if (item.id === productId) {
           return [...arr];
         } else {
           return [...arr, item];
@@ -32,46 +27,33 @@ export const deleteItem = (id) => {
       }, []);
 
       update(shopRef, { shopping_cart: newCart });
-      dispatch(getShoppingCart(""));
     } catch (err) {
       alert(err.message);
     }
   };
 };
 
-export const getShoppingCart = (id) => {
+export const getShoppingCart = (userId) => {
   return async (dispatch) => {
     let list = [];
-    if (id) {
-      try {
-        const result = await get(ref(realtimeDB, `users/${id}/carts`));
+    const shopRef = ref(realtimeDB, `users/${userId}/carts`);
 
-        if (!result.exists()) {
-          return;
-        }
-
-        list = result.val().shopping_cart;
+    onValue(shopRef, (result) => {
+      if (!result.exists()) {
         dispatch(setShoppingCart(list));
-      } catch (err) {
-        console.log(err);
+        return;
       }
-    } else {
-      onValue(shopRef, (result) => {
-        if (!result.exists()) {
-          dispatch(setShoppingCart(list));
-          return;
-        }
 
-        list = result.val().shopping_cart;
-        dispatch(setShoppingCart(list));
-      });
-    }
+      list = result.val().shopping_cart;
+      dispatch(setShoppingCart(list));
+    });
   };
 };
 
-export const postShoppingCart = (data) => {
+export const postShoppingCart = (data, userId) => {
   return async (dispatch) => {
     let shopping_cart = [];
+    const shopRef = ref(realtimeDB, `users/${userId}/carts`);
     try {
       const result = await get(shopRef);
       if (!result.exists()) {
@@ -80,7 +62,7 @@ export const postShoppingCart = (data) => {
         return;
       }
 
-      shopping_cart = result.val().wish_list;
+      shopping_cart = result.val().shopping_cart;
       let duplicate = false;
       const newCart = shopping_cart.reduce((arr, item) => {
         if (item.id === data.id) {
@@ -93,10 +75,10 @@ export const postShoppingCart = (data) => {
 
       if (!duplicate) {
         newCart.push(data);
+        console.log(newCart);
       }
 
       update(shopRef, { shopping_cart: newCart });
-      dispatch(getShoppingCart(""));
     } catch (err) {
       alert(err.message);
     }

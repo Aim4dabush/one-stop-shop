@@ -20,6 +20,7 @@ import { DateTime } from "luxon";
 
 const DetailsCard = () => {
   const dispatch = useDispatch();
+  const { loggedUser } = useSelector((state) => state.auth);
   const {
     brand,
     category,
@@ -49,7 +50,7 @@ const DetailsCard = () => {
       title,
     };
 
-    dispatch(postShoppingCart(post));
+    dispatch(postShoppingCart(post, loggedUser.id));
   };
 
   const wishListHandler = () => {
@@ -67,7 +68,7 @@ const DetailsCard = () => {
       title,
     };
 
-    dispatch(postWishList(post));
+    dispatch(postWishList(post, loggedUser.id));
   };
 
   return (

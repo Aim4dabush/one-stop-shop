@@ -6,12 +6,10 @@ import { realtimeDB } from "../firebaseConfig";
 //realtime database
 import { get, onValue, ref, update } from "firebase/database";
 
-const user = JSON.parse(localStorage.getItem("user"));
-const wishRef = ref(realtimeDB, `users/${user?.id}/carts`);
-
-export const deleteItem = (id) => {
+export const deleteItem = (productId, userId) => {
   return async (dispatch) => {
     let list = [];
+    const wishRef = ref(realtimeDB, `users/${userId}/carts`);
     try {
       const result = await get(wishRef);
 
@@ -21,7 +19,7 @@ export const deleteItem = (id) => {
 
       list = result.val().wish_list;
       const newCart = list.reduce((arr, item) => {
-        if (item.id === id) {
+        if (item.id === productId) {
           return [...arr];
         } else {
           return [...arr, item];
@@ -29,46 +27,33 @@ export const deleteItem = (id) => {
       }, []);
 
       update(wishRef, { wish_list: newCart });
-      dispatch(getWishList(""));
     } catch (err) {
       alert(err.message);
     }
   };
 };
 
-export const getWishList = (id) => {
+export const getWishList = (userId) => {
   return async (dispatch) => {
     let list = [];
-    if (id) {
-      try {
-        const result = await get(ref(realtimeDB, `users/${id}/carts`));
+    const wishRef = ref(realtimeDB, `users/${userId}/carts`);
 
-        if (!result.exists()) {
-          return;
-        }
-
-        list = result.val().wish_list;
+    onValue(wishRef, (result) => {
+      if (!result.exists()) {
         dispatch(setWishListCart(list));
-      } catch (err) {
-        console.log(err);
+        return;
       }
-    } else {
-      onValue(wishRef, (result) => {
-        if (!result.exists()) {
-          dispatch(setWishListCart(list));
-          return;
-        }
 
-        list = result.val().wish_list;
-        dispatch(setWishListCart(list));
-      });
-    }
+      list = result.val().wish_list;
+      dispatch(setWishListCart(list));
+    });
   };
 };
 
-export const postWishList = (data) => {
+export const postWishList = (data, userId) => {
   return async (dispatch) => {
     let wish_list = [];
+    const wishRef = ref(realtimeDB, `users/${userId}/carts`);
     try {
       const result = await get(wishRef);
       if (!result.exists()) {
@@ -93,7 +78,6 @@ export const postWishList = (data) => {
       }
 
       update(wishRef, { wish_list: newCart });
-      dispatch(getWishList(""));
     } catch (err) {
       alert(err.message);
     }
