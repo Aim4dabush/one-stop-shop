@@ -86,7 +86,7 @@ export const login = (loginInfo) => {
       const currentTime = DateTime.now().toFormat("X");
       const loginCredentials = {
         id: user.claims.user_id,
-        expires: expTime - currentTime,
+        expires: parseInt(expTime) - parseInt(currentTime),
         token: user.token,
       };
 
