@@ -10,9 +10,6 @@ import {
 import { setShoppingCartReset } from "../../redux/slices/shoppingCartSlice";
 import { setWishListCartReset } from "../../redux/slices/wishListSlice";
 
-//firebase
-import { auth } from "../firebaseConfig";
-
 //authentication
 import {
   createUserWithEmailAndPassword,
@@ -20,6 +17,9 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
+
+//firebase
+import { auth } from "../firebaseConfig";
 
 //luxon
 import { DateTime } from "luxon";
@@ -80,13 +80,12 @@ export const login = (loginInfo) => {
         throw new Error("Problem with getting user token");
       }
 
-      const expTime = DateTime.fromSeconds(user.claims.exp)
-        .plus({ hours: 2 })
-        .toFormat("X");
-      const currentTime = DateTime.now().toFormat("X");
+      const date = new Date(user.claims.exp);
+      const fbExp = DateTime.fromJSDate(date).plus({ hours: 1 }).toFormat("x");
+
       const loginCredentials = {
         id: user.claims.user_id,
-        expires: parseInt(expTime) - parseInt(currentTime),
+        expires: fbExp,
         token: user.token,
       };
 
