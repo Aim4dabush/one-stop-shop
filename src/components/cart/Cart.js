@@ -7,20 +7,26 @@ import { useSelector } from "react-redux";
 
 //styles
 import styles from "./Cart.module.scss";
+import { Fragment } from "react";
 
 const Cart = () => {
   const { shoppingCart } = useSelector((state) => state.carts);
+  console.log(shoppingCart?.length);
   return (
     <div className={styles.container}>
-      <div className={styles.item_one}>
-        {shoppingCart?.length > 0 &&
-          shoppingCart.map((item) => {
-            return <CartCard key={item.id} item={item} />;
-          })}
-      </div>
-      <div className={styles.item_two}>
-        <SummaryCard />
-      </div>
+      {!shoppingCart?.length && <h3 className={styles.empty}>Cart Is Empty</h3>}
+      {shoppingCart?.length > 0 && (
+        <Fragment>
+          <div className={styles.item_one}>
+            {shoppingCart.map((item) => {
+              return <CartCard key={item.id} item={item} />;
+            })}
+          </div>
+          <div className={styles.item_two}>
+            <SummaryCard />
+          </div>
+        </Fragment>
+      )}
     </div>
   );
 };

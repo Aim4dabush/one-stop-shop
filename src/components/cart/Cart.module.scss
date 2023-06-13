@@ -3,6 +3,12 @@
   margin-top: 1rem;
   padding: 0 1rem;
 
+  .empty {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
   .item_one {
     align-items: center;
     display: flex;

@@ -69,7 +69,9 @@ const NavBar = () => {
         <li>
           <SharedLink buttonStyle={"nav-link"} path={"/cart"}>
             <FaShoppingCart /> Cart{" "}
-            <span className={styles.badge}>{shoppingCart?.length}</span>
+            <span className={styles.badge}>
+              {shoppingCart?.length ? shoppingCart.length : 0}
+            </span>
           </SharedLink>
         </li>
         <li>
@@ -104,7 +106,9 @@ const NavBar = () => {
             <li>
               <SharedLink path={"/profile/wish-list"}>
                 Wish List{" "}
-                <span className={styles.badge}>{wishList?.length}</span>
+                <span className={styles.badge}>
+                  {wishList?.length ? wishList.length : 0}
+                </span>
               </SharedLink>
             </li>
           </ul>
