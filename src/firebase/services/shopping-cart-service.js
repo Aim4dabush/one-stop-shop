@@ -1,4 +1,4 @@
-import { setShoppingCart } from "../../redux/slices/shoppingCartSlice";
+import { setShoppingCart } from "../../redux/slices/cartsSlice";
 
 //firebase
 import { realtimeDB } from "../firebaseConfig";

@@ -15,7 +15,7 @@ import styles from "./SummaryCard.module.scss";
 
 const SummaryCard = () => {
   const navigate = useNavigate();
-  const { shoppingCart } = useSelector((state) => state.shop);
+  const { shoppingCart } = useSelector((state) => state.carts);
 
   const checkoutHandler = () => {
     navigate("/checkout", { replace: true });

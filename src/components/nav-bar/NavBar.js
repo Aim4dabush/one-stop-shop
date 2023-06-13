@@ -27,8 +27,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { loggedUser } = useSelector((state) => state.auth);
-  const { shoppingCart } = useSelector((state) => state.shop);
-  const { wishListCart } = useSelector((state) => state.wish);
+  const { shoppingCart, wishList } = useSelector((state) => state.carts);
   const [openMenu, setOpenMenu] = useState(false);
   const [showOnHover, setShowOnHover] = useState(false);
   const [showOnClick, setShowOnClick] = useState(false);
@@ -105,7 +104,7 @@ const NavBar = () => {
             <li>
               <SharedLink path={"/profile/wish-list"}>
                 Wish List{" "}
-                <span className={styles.badge}>{wishListCart?.length}</span>
+                <span className={styles.badge}>{wishList?.length}</span>
               </SharedLink>
             </li>
           </ul>

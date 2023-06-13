@@ -1,4 +1,4 @@
-import { setWishListCart } from "../../redux/slices/wishListSlice";
+import { setWishList } from "../../redux/slices/cartsSlice";
 
 //firebase
 import { realtimeDB } from "../firebaseConfig";
@@ -40,12 +40,12 @@ export const getWishList = (userId) => {
 
     onValue(wishRef, (result) => {
       if (!result.exists()) {
-        dispatch(setWishListCart(list));
+        dispatch(setWishList(list));
         return;
       }
 
       list = result.val().wish_list;
-      dispatch(setWishListCart(list));
+      dispatch(setWishList(list));
     });
   };
 };
