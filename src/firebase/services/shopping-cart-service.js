@@ -56,7 +56,7 @@ export const postShoppingCart = (data, userId) => {
     const shopRef = ref(realtimeDB, `users/${userId}/carts`);
     try {
       const result = await get(shopRef);
-      if (!result.exists()) {
+      if (!result.exists().shopping_cart) {
         shopping_cart.push(data);
         update(shopRef, { shopping_cart });
         return;

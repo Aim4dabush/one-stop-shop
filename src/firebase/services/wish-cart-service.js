@@ -56,7 +56,7 @@ export const postWishList = (data, userId) => {
     const wishRef = ref(realtimeDB, `users/${userId}/carts`);
     try {
       const result = await get(wishRef);
-      if (!result.exists()) {
+      if (!result.exists().wish_list) {
         wish_list.push(data);
         update(wishRef, { wish_list });
         return;

@@ -14,7 +14,6 @@ const Cart = () => {
   console.log(shoppingCart?.length);
   return (
     <div className={styles.container}>
-      {!shoppingCart?.length && <h3 className={styles.empty}>Cart Is Empty</h3>}
       {shoppingCart?.length > 0 && (
         <Fragment>
           <div className={styles.item_one}>
@@ -27,6 +26,7 @@ const Cart = () => {
           </div>
         </Fragment>
       )}
+      {!shoppingCart?.length && <h3 className={styles.empty}>Cart Is Empty</h3>}
     </div>
   );
 };
