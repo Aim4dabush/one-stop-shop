@@ -1,8 +1,12 @@
 @import "../../../SassVariables.scss";
 
-.container {
-  .card {
-    box-shadow: 6px 6px 10px black;
+.card {
+  border: 1px solid $secondary;
+  border-radius: 8px;
+  box-shadow: 6px 6px 10px $secondary;
+  width: 100%;
+
+  table {
     width: 100%;
 
     th {
@@ -13,5 +17,9 @@
       font-style: italic;
       font-weight: $bold;
     }
+  }
+
+  .title {
+    text-align: center;
   }
 }

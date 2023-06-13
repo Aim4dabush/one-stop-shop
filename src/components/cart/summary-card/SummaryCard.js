@@ -27,9 +27,9 @@ const SummaryCard = () => {
   }, 0);
 
   return (
-    <div className={styles.container}>
-      <h1>Cart Summary</h1>
-      <table className={styles.card}>
+    <div className={styles.card}>
+      <h1 className={styles.title}>Cart Summary</h1>
+      <table>
         <thead>
           <tr>
             <th>Title</th>
