@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  margin-top: 1rem;
+  padding: 0 1rem;
+
+  .item_one {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 0 0.5rem;
+    width: 100%;
+  }
+
+  .item_two {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 0 0.5rem;
+    width: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    align-items: center;
+    flex-direction: column-reverse;
+  }
+}

@@ -1,0 +1,17 @@
+@import "../../../SassVariables.scss";
+
+.container {
+  .card {
+    box-shadow: 6px 6px 10px black;
+    width: 100%;
+
+    th {
+      border: 1px solid $secondary;
+    }
+
+    .total {
+      font-style: italic;
+      font-weight: $bold;
+    }
+  }
+}
