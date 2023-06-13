@@ -10,7 +10,8 @@ const SharedButton = ({ buttonStyle, children, clickHandler, tip }) => {
         (buttonStyle === "nav-button" && styles.nav_button) ||
         (buttonStyle === "success" && styles.success) ||
         (buttonStyle === "secondary" && styles.secondary) ||
-        (buttonStyle === "warning" && styles.warning)
+        (buttonStyle === "warning" && styles.warning) ||
+        (buttonStyle === "danger" && styles.danger)
       }`}
       onClick={clickHandler}
     >

@@ -17,6 +17,12 @@
     width: 175%;
   }
 }
+
+.danger {
+  background-color: $error;
+  color: $secondary;
+}
+
 .nav_link {
   color: $link;
   font-size: 16px;
