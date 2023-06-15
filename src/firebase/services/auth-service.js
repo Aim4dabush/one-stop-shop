@@ -3,6 +3,7 @@ import {
   setLoggedUserReset,
   setRegistered,
 } from "../../redux/slices/authSlice";
+import { setOrderHistoryReset } from "../../redux/slices/orderHistorySlice";
 import {
   setProductReset,
   setProductsReset,
@@ -105,6 +106,7 @@ export const logout = () => {
   return (dispatch) => {
     signOut(auth);
     dispatch(setLoggedUserReset());
+    dispatch(setOrderHistoryReset());
     dispatch(setProductReset());
     dispatch(setProductsReset());
     dispatch(setShoppingCartReset());
