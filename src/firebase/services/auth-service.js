@@ -82,12 +82,13 @@ export const login = (loginInfo) => {
         throw new Error("Problem with getting user token");
       }
 
-      const date = new Date(user.claims.exp);
-      const fbExp = DateTime.fromJSDate(date).plus({ hours: 1 }).toFormat("x");
+      const loginExp = DateTime.now().plus({ hours: 2 }).toFormat("x");
+      const loginTime = DateTime.now().toFormat("x");
+      const expiration = loginExp - loginTime;
 
       const loginCredentials = {
         id: user.claims.user_id,
-        expires: fbExp,
+        expires: expiration,
         token: user.token,
       };
 
