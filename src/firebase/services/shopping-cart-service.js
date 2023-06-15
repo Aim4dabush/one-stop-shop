@@ -34,19 +34,23 @@ export const deleteItem = (productId, userId) => {
 };
 
 export const getShoppingCart = (userId) => {
-  return async (dispatch) => {
+  return (dispatch) => {
     let list = [];
     const shopRef = ref(realtimeDB, `users/${userId}/carts`);
 
-    onValue(shopRef, (result) => {
-      if (!result.exists()) {
-        dispatch(setShoppingCart(list));
-        return;
-      }
+    try {
+      onValue(shopRef, (result) => {
+        if (!result.exists()) {
+          dispatch(setShoppingCart(list));
+          return;
+        }
 
-      list = result.val().shopping_cart;
-      dispatch(setShoppingCart(list));
-    });
+        list = result.val().shopping_cart;
+        dispatch(setShoppingCart(list));
+      });
+    } catch (err) {
+      alert(err.message);
+    }
   };
 };
 

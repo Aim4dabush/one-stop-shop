@@ -34,19 +34,23 @@ export const deleteItem = (productId, userId) => {
 };
 
 export const getWishList = (userId) => {
-  return async (dispatch) => {
+  return (dispatch) => {
     let list = [];
     const wishRef = ref(realtimeDB, `users/${userId}/carts`);
 
-    onValue(wishRef, (result) => {
-      if (!result.exists()) {
-        dispatch(setWishList(list));
-        return;
-      }
+    try {
+      onValue(wishRef, (result) => {
+        if (!result.exists()) {
+          dispatch(setWishList(list));
+          return;
+        }
 
-      list = result.val().wish_list;
-      dispatch(setWishList(list));
-    });
+        list = result.val().wish_list;
+        dispatch(setWishList(list));
+      });
+    } catch (err) {
+      alert(err.message);
+    }
   };
 };
 

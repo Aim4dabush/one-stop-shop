@@ -58,7 +58,7 @@ export const signup = (data) => {
       };
       dispatch(postProfile(postData));
     } catch (err) {
-      console.log(err.message);
+      alert(err.message);
     }
   };
 };
@@ -96,7 +96,7 @@ export const login = (loginInfo) => {
       dispatch(setLoggedUser(loginCredentials));
       alert("Logged In Successfully");
     } catch (err) {
-      console.log(err.message);
+      alert(err.message);
     }
   };
 };

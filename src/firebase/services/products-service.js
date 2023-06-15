@@ -36,7 +36,7 @@ export const getProducts = () => {
 
       dispatch(setProducts(arr));
     } catch (err) {
-      console.log(err.message);
+      alert(err.message);
     }
   };
 };
