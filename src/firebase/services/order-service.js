@@ -3,6 +3,9 @@ import { setOrderHistory } from "../../redux/slices/orderHistorySlice";
 //firebase
 import { realtimeDB } from "../firebaseConfig";
 
+//luxon
+import { DateTime } from "luxon";
+
 //realtime database
 import { get, onValue, ref, update } from "firebase/database";
 
@@ -76,15 +79,17 @@ export const postOrder = (data, userId) => {
         arrival: order.arrival_date,
         city: shippingInfo.city,
         products: order.products,
-        order_date: order.order_date,
+        order_date: DateTime.now().toFormat("MM-dd-yyyy"),
         order_total: order.order_total,
         receipt: order.receipt,
+        shipping_type: order.shipping_type,
         state: shippingInfo.state,
         street: shippingInfo.street,
         zip: shippingInfo.zip,
       },
     };
     const profile = {
+      birth: DateTime.fromISO(general.birth).toFormat("MM-dd-yyyy"),
       city: billing.city,
       email: general.email,
       name: general.name,
