@@ -1,37 +1,23 @@
 @import "../../../SassVariables.scss";
 
-.input_wrapper {
+.select {
   display: flex;
   flex-direction: column;
   padding: 0 0.25rem;
   width: 50%;
 
-  .error {
-    border: 1px solid $error;
-  }
-
-  .error_label {
-    color: $error;
-  }
-
   .error_message {
     color: $error;
     font-size: 14px;
   }
+
+  .error {
+    border: 1px solid $error;
+  }
 }
 
 .checkbox {
-  flex-direction: row;
-}
-
-.full_width {
-  width: 100%;
-}
-
-@media (max-width: 1600px) {
-  .split_width {
-    width: 50%;
-  }
+  align-items: flex-start;
 }
 
 @media (max-width: 1400px) {

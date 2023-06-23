@@ -53,8 +53,8 @@ h6 {
 input {
   border: 1px solid $secondary;
   border-radius: 5px;
-  padding-left: 0.25rem;
   font-size: 20px;
+  padding-left: 0.25rem;
 }
 
 label {
@@ -64,6 +64,13 @@ label {
 p {
   font-weight: $regular;
   margin: 0;
+}
+
+select {
+  border: 1px solid $secondary;
+  border-radius: 5px;
+  font-size: 20px;
+  padding-left: 0.25rem;
 }
 
 ul {
