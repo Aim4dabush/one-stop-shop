@@ -1,0 +1,11 @@
+@import "../../../../SassVariables.scss";
+
+.options {
+  margin-top: 2rem;
+
+  .checkbox_wrapper {
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+  }
+}

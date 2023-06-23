@@ -1,0 +1,35 @@
+@import "../../../SassVariables.scss";
+
+.cart_list_container {
+  border: 1px solid $secondary;
+  border-radius: 8px;
+  box-shadow: 6px 6px 10px $secondary;
+  height: fit-content;
+  padding: 1rem;
+  width: 45%;
+
+  table {
+    width: 100%;
+
+    th {
+      border: 1px solid $secondary;
+    }
+  }
+  .total {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 1600px) {
+  .cart_list_container {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 912px) {
+  .cart_list_container {
+    width: 100%;
+  }
+}

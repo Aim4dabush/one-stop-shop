@@ -1,0 +1,25 @@
+@import "../../../SassVariables.scss";
+
+.order_info_container {
+  border: 1px solid $secondary;
+  border-radius: 8px;
+  box-shadow: 6px 6px 10px $secondary;
+  padding: 0.5rem;
+  width: 45%;
+
+  .form_title {
+    text-align: center;
+  }
+
+  .btn_wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 912px) {
+  .order_info_container {
+    width: 100%;
+  }
+}

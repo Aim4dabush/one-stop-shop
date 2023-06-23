@@ -1,0 +1,9 @@
+.billing_wrapper {
+  margin-top: 2rem;
+
+  .billing_address {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
